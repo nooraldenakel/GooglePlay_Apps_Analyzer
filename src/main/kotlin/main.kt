@@ -6,7 +6,7 @@ fun main() {
         println("App Develop By Google = ${countAppsDevelopByGoogle(appDataList = listData, companyName = "Google")}")
         println("PercentageOfCategory = ${getPercentageOfCategory(appDataList = listData,categoryName = "Medical")}")
         println("The oldestApp = ${findOldestApp(appDataList = listData)}")
-        println("Percentage of Apps Running On Android 9 = ${percentageAppsRunningOnAndroid9(appDataList = listData, requiresAndroid = "9 and up")}")
+        println("Percentage of Apps Running On Android 9 = ${percentageAppsRunningOnAndroid9(appDataList = listData, androidVersion = 7.0)}")
         println("Largest Top Ten Apps = ${theLargestTopTenApps(appDataList = listData, number = 10)}")
         println("Top Ten App Install = ${topTenAppInstall(appDataList = listData, number = 10)}")}
 }

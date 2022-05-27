@@ -20,8 +20,8 @@ fun findOldestApp(appDataList: List<App>): String =
 
 
 //Req4 -Find Percentage Of App Running On Android 9.#Rash
-fun percentageAppsRunningOnAndroid9(appDataList: List<App>, requiresAndroid: String): Int =
-    appDataList.asSequence().filter { it.requiresAndroid.contains(requiresAndroid) }
+fun percentageAppsRunningOnAndroid9(appDataList: List<App>, androidVersion: Double): Int =
+    appDataList.asSequence().filter { it.requiresAndroid.contains("$androidVersion and up") }
         .map { String.format("%.1f", 100.0 * it.requiresAndroid.count() / appDataList.size) }.count()
 
 
@@ -37,18 +37,10 @@ fun theLargestTopTenApps(appDataList: List<App>, number: Int): List<String?> =
 
 private fun String.calculateSize(): Double =
     when (this.last()) {
-        'G' -> {
-            this.removeLastCharacter(this.last()) * 1000000.0
-        }
-        'M' -> {
-            this.removeLastCharacter(this.last()) * 1000.0
-        }
-        else -> {
-            this.removeLastCharacter(this.last()) * 1.0
-        }
+        'G' -> { this.removeSuffix(this.last().toString()).toDouble() * 1000000 }
+        'M' -> { this.removeSuffix(this.last().toString()).toDouble() * 1000.0 }
+        else -> { this.removeSuffix(this.last().toString()).toDouble() * 1.0 }
     }
-
-private fun String.removeLastCharacter(text: Char) = this.removeSuffix(text.toString()).toDouble()
 
 
 //Req6 -Find Top Ten App Install.#Nooralden
