@@ -1,4 +1,6 @@
-# AppsAnalytics
+# GooglePlay Apps Analyzer
+# The Chance 2022 - Season 0 - Week 1
+--
 This App is analytics program by taking a DataSet you can know the following:
 1. How many apps were developed given copany name.
 2. The percentage of apps with specific category..eg. "Medical, Shoping,Healthy ...etc"
