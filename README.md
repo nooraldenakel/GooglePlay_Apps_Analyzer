@@ -1,7 +1,6 @@
 # GooglePlay Apps Analyzer
 # The Chance 2022 - Season 0 - Week 1
 This App is analytics Google Play apps , and provide some analytics data using CSV dataset,
-Req//
 1. How many apps were developed given copany name.
 2. The percentage of apps with specific category..eg. "Medical, Shoping,Healthy ...etc"
 3. What is the oldest app in the dataset. 
