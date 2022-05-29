@@ -2,11 +2,12 @@ import parser.ParseData
 import util.Constant
 
 fun main() {
+    val analyzer = Analyzer()
     ParseData.parseFile(Constant.FILE_NAME)?.let {listData->
-        println("App Develop By Google = ${countAppsDevelopByGoogle(appDataList = listData, companyName = "Google")}")
-        println("PercentageOfCategory = ${getPercentageOfCategory(appDataList = listData,categoryName = "Medical")}")
-        println("The oldestApp = ${findOldestApp(appDataList = listData)}")
-        println("Percentage of Apps Running On Android 9 = ${percentageAppsRunningOnAndroid9(appDataList = listData, androidVersion = 7.0)}")
-        println("Largest Top Ten Apps = ${theLargestTopTenApps(appDataList = listData, number = 10)}")
-        println("Top Ten App Install = ${topTenAppInstall(appDataList = listData, number = 10)}")}
+        println("App Develop By Google = ${analyzer.countAppsDevelopByCompany(appDataList = listData, companyName = "Google")}")
+        println("PercentageOfCategory = ${analyzer.getPercentageOfCategory(appDataList = listData,categoryName = "Medical")}")
+        println("The oldestApp = ${analyzer.findOldestApp(appDataList = listData)}")
+        println("Percentage of Apps Running On Android 9 = ${analyzer.getPercentageAppsRunningOnSpecificVersion(apps = listData, version = 9.0)}")
+        println("Largest Top Ten Apps = ${analyzer.theLargestTopApps(appDataList = listData, size  = 10)}")
+        println("Top Ten App Install = ${analyzer.topAppInstall(appDataList = listData, size = 10)}")}
 }

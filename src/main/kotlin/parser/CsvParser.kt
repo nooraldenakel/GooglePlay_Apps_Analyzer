@@ -2,7 +2,8 @@ package parser
 
 import model.App
 import util.Constant
-import util.convertStringToDate
+import util.Converter.convertStringToDate
+import util.Converter.convertToDouble
 
 class CsvParser {
     fun parse(line: String): App {
@@ -13,9 +14,8 @@ class CsvParser {
             category = tokens[Constant.ColumIndex.CATEGORY],
             updatedDate = tokens[Constant.ColumIndex.UPDATE_DATE].convertStringToDate(),
             size = tokens[Constant.ColumIndex.SIZE],
-            installs = tokens[Constant.ColumIndex.INSTALLS].toLongOrNull() ?: 0,
-            currentVersion = tokens[Constant.ColumIndex.CURRENT_VERSION],
-            requiresAndroid = tokens[Constant.ColumIndex.REQUIRED_ANDROID],
+            installs = tokens[Constant.ColumIndex.INSTALLS].toLong(),
+            requiresAndroid = tokens[Constant.ColumIndex.REQUIRED_ANDROID].convertToDouble(),
         )
     }
 }

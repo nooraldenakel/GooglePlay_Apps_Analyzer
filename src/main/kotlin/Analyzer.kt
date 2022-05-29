@@ -1,52 +1,53 @@
 import model.App
-import kotlin.math.roundToInt
+import util.Constant
+import util.Converter.calculatePercentage
+import kotlin.math.pow
+
+class Analyzer {
+    fun countAppsDevelopByCompany(appDataList: List<App>, companyName: String): Int =
+        appDataList.count { it.company.contains(companyName) }
 
 
-//Req1 -Find Count Of App Develop by Google.#Nooralden
-fun countAppsDevelopByGoogle(appDataList: List<App>, companyName: String): Int =
-    appDataList.count { it.company.contains(companyName) }
+    fun getPercentageOfCategory(appDataList: List<App>, categoryName: String): Double =
+        calculatePercentage(
+            appDataList.count { it.category.contains(categoryName.trim(), true) },
+            appDataList.size
+        )
 
 
-//Req2 -Find Percentage of Category.#Nada
-fun getPercentageOfCategory(appDataList: List<App>, categoryName: String): Double =
-    appDataList.count { it.category.contains(categoryName) }
-        .div(appDataList.size.toDouble()).times(100)
-        .times(100).roundToInt().toDouble() / 100
+    fun findOldestApp(appDataList: List<App>): String? =
+        appDataList.minByOrNull { it.updatedDate }?.appName
+
+    fun getPercentageAppsRunningOnSpecificVersion(apps: List<App>, version: Double): Double =
+      calculatePercentage(apps.count { it.requiresAndroid == version }, apps.size)
 
 
-//Req3 -Find Oldest App.#Nada
-fun findOldestApp(appDataList: List<App>): String =
-    appDataList.sortedBy { it.updatedDate }.first().appName
+    fun theLargestTopApps(appDataList: List<App>, size: Int?): List<String> =
+        appDataList.asSequence()
+            .filterNot { it.size.contains("Varies with device") }
+            .sortedByDescending { it.size.calculateSize() }
+            .map { it.appName }
+            .take(size ?: 0)
+            .toList()
 
 
-//Req4 -Find Percentage Of App Running On Android 9.#Rash
-fun percentageAppsRunningOnAndroid9(appDataList: List<App>, androidVersion: Double): Int =
-    appDataList.asSequence().filter { it.requiresAndroid.contains("$androidVersion and up") }
-        .map { String.format("%.1f", 100.0 * it.requiresAndroid.count() / appDataList.size) }.count()
+    private fun String.calculateSize(): Double =
+        when (this.last()) {
+            'G' -> {
+                this.removeSuffix(this.last().toString()).toDouble() * Constant.KILO_BYTE.pow(3)
+            }
+            'M' -> {
+                this.removeSuffix(this.last().toString()).toDouble() * Constant.KILO_BYTE.pow(2)
+            }
+            else -> {
+                this.removeSuffix(this.last().toString()).toDouble() * Constant.KILO_BYTE.pow(1)
+            }
+        }
 
-
-//Req5 -Find The Largest Top Ten Apps.#Nooralden
-fun theLargestTopTenApps(appDataList: List<App>, number: Int): List<String?> =
-    appDataList.asSequence()
-        .filterNot { it.size.contains("Varies with device") }
-        .sortedByDescending { it.size.calculateSize() }
-        .map { it.appName }
-        .take(number)
-        .toList()
-
-
-private fun String.calculateSize(): Double =
-    when (this.last()) {
-        'G' -> { this.removeSuffix(this.last().toString()).toDouble() * 1000000 }
-        'M' -> { this.removeSuffix(this.last().toString()).toDouble() * 1000.0 }
-        else -> { this.removeSuffix(this.last().toString()).toDouble() * 1.0 }
-    }
-
-
-//Req6 -Find Top Ten App Install.#Nooralden
-fun topTenAppInstall(appDataList: List<App>, number: Int): List<String> =
-    appDataList.asSequence()
-        .sortedByDescending { dataSorted -> dataSorted.installs }
-        .map { data -> data.appName }
-        .take(number)
-        .toList()
+    fun topAppInstall(appDataList: List<App>, size: Int?): List<String> =
+        appDataList.asSequence()
+            .sortedByDescending { dataSorted -> dataSorted.installs }
+            .map { data -> data.appName }
+            .take(size ?: 0)
+            .toList()
+}
