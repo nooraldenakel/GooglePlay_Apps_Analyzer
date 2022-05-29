@@ -1,9 +1,8 @@
-# GooglePlay_Apps_Analyzer
+# GooglePlay Apps Analyzer
 The Chance 2022 - Season 0 - Week 1
 --
-Create a Google Play apps analytics program, using the provided CSV dataset,
-Follow what you learned in oop to create a model of “App” and convert the entire data set into a list of apps,
-then create an Analyzer class with functions to calculate the following:
+This App is analytics Google Play apps , and provide some analytics data using CSV dataset,
+Req//
 1- how many apps were developed by Google in the dataset.
 2- the percentage of Medical apps.
 3- what is the oldest app in the dataset.
