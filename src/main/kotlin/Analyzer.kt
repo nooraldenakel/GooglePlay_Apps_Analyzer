@@ -17,7 +17,6 @@ class Analyzer {
     fun findOldestApp(appDataList: List<App>?): App? =
         appDataList?.filterNot { app -> app.updated == null }?.minByOrNull { selector -> selector.updated!! }
 
-    //Refactor
     fun findPercentageOfAppRunningOnSpecificAndroid(appDataList: List<App>?, version: Double): Double? =
         if (version >= Constant.MIN_COMPARE_INT) {
             appDataList?.count { count -> count.requiresAndroid != null && count.requiresAndroid == version }
@@ -43,12 +42,5 @@ class Analyzer {
             val largestApp = appDataList?.filter { app: App ->  app.company.contains(companyName.trim(), true) }
             findLargestApps(largestApp, 1)?.first()}
         else { null }
-
-
-
-
-
-
-
 
 }
