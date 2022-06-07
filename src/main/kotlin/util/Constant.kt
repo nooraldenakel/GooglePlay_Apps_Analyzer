@@ -1,7 +1,7 @@
 package util
 
 object Constant {
-    object ColumIndex{
+    object CSVColumIndex{
         const val APP_NAME = 0
         const val COMPANY = 1
         const val CATEGORY = 2
@@ -10,7 +10,17 @@ object Constant {
         const val INSTALLS = 5
         const val REQUIRED_ANDROID = 7
     }
-    const val FILE_NAME = "google_play.csv"
+    object JsonColumIndex{
+        const val APP_NAME = "appName"
+        const val COMPANY = "company"
+        const val CATEGORY = "category"
+        const val UPDATE_DATE = "updated"
+        const val SIZE = "size"
+        const val INSTALLS = "installs"
+        const val REQUIRED_ANDROID = "requiresAndroid"
+    }
+    const val CSV_FILE_NAME = "google_play.csv"
+    const val JSON_FILE_NAME = "google_play.json"
     const val DATE_FORMAT="MMM d yyyy"
     const val KILO_BYTE = 1024.0
     const val MIN_COMPARE_INT = 1

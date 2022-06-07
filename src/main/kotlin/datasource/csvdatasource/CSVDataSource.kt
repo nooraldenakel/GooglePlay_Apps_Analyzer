@@ -1,11 +1,11 @@
-package repository.csvdatasource
+package datasource.csvdatasource
 
 import model.App
-import repository.IDataSource
+import datasource.IDataSource
 import util.Constant
 import java.io.File
 
-class CSVDataSource(private var fileName: String = Constant.FILE_NAME) : IDataSource {
+class CSVDataSource(private var fileName: String = Constant.CSV_FILE_NAME) : IDataSource {
     override fun getAllData(): List<App>? {
         val appList = mutableListOf<App>()
         File(fileName).apply {
